@@ -8,7 +8,7 @@ module Facebook
       # Mostly useful for testing.
       def encode_and_sign options
         encoded_data      = Base64.urlsafe_encode64( options.to_json ).tr('=', '')
-        digestor          = OpenSSL::Digest::Digest.new('sha256')
+        digestor          = OpenSSL::Digest.new('sha256')
         signature         = OpenSSL::HMAC.digest( digestor, @secret, encoded_data )
         encoded_signature = Base64.strict_encode64( signature ).tr("+/", "-_")
         encoded_signature = encoded_signature.tr('=', '')
@@ -106,7 +106,7 @@ module Facebook
     end
 
     def compute_signature
-      digestor            = OpenSSL::Digest::Digest.new('sha256')
+      digestor            = OpenSSL::Digest.new('sha256')
       computed_signature  = OpenSSL::HMAC.digest(
         digestor, @secret, @encoded_data
       )
